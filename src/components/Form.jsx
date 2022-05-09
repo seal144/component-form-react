@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Form.scss'
 
@@ -16,6 +16,14 @@ const Form = () => {
     password: false,
     accept: false
   })
+
+  useEffect(() => {
+    if(formMessage !== '') {
+      setTimeout(()=>{
+        setFormMessage('')
+      }, 3000)
+    }
+  },[formMessage])
 
   const messages = {
     username_inccorect: 'Nazwa musi być dłużasza niz 2 znaki i nie może zawierać spacji',
