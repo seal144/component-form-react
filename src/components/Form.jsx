@@ -50,7 +50,47 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formValues);
+
+    const validation = formValidation();
+
+    if(validation.correct) {
+      console.log('wyslanie formularza', formValues)
+      setFormValues({
+        userName: '',
+        email: '',
+        password: '',
+        accept: false,
+      });
+      setFormMessage('Formularz został wysłany')
+      setErrors({
+        userName: false,
+        email: false,
+        password: false,
+        accept: false
+      })
+    } else {
+      setErrors({
+        userName: !validation.userName,
+        email: !validation.email,
+        password: !validation.password,
+        accept: !validation.accept
+      })
+    }
+  }
+
+  const formValidation = () => {
+    let userName = true;
+    let email = true;
+    let password = true;
+    let accept = true;
+    let correct = true;
+    return {
+    userName,
+    email,
+    password,
+    accept,
+    correct
+    }
   }
 
   return(
@@ -148,7 +188,7 @@ const Form = () => {
       </div>
 
       <div className="form__element form__element--error">
-        {formMessage && <span className = "form__error"> { formMessage } </span> }
+        {formMessage && <span className = "form__error form__error--success"> { formMessage } </span> }
       </div>
     </form>
   )
