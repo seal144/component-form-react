@@ -42,67 +42,95 @@ const Form = () => {
       onSubmit = {handleSubmit}
       onChange = {handleChange}
       noValidate
-      classsName = "form"
-    >
-      <label htmlFor = "user" classsName = "form__label">
-        Twoje imię:
+      className = "form"
+    > 
+      <div className="form__element">
+        <label htmlFor = "user" className = "form__label">
+          Twoje imię:
+        </label>
         <input 
-          classsName = "form__input"
-          type = "text"
-          id = "user"
-          name = "userName"
-          value = {formValues.userName}
-        />
+            className = "form__input"
+            type = "text"
+            id = "user"
+            name = "userName"
+            value = {formValues.userName}
+        /> 
+      </div>
+
+      <div className="form__element form__element--error">
         {errors.userName && (
-          <span> {messages.username_inccorect} </span>
+          <span className = "form__error" > {messages.username_inccorect} </span>
         )}
-      </label>
+      </div >
 
-      <label htmlFor = "email" classsName = "form__label">
-        Email:
+      <div className="form__element">
+        <label htmlFor = "email" className = "form__label">
+          Email:
+        </label>
         <input 
-          classsName = "form__input"
-          type = "email"
-          id = "email"
-          name = "email"
-          value = {formValues.email}
-        />
-        {errors.email && (
-          <span> {messages.email_inccorect} </span>
-        )}
-      </label>
+            className = "form__input"
+            type = "email"
+            id = "email"
+            name = "email"
+            value = {formValues.email}
+          />
+          
+      </div>
 
-      <label htmlFor = "password" classsName = "form__label">
-        Hasło:
+      <div className="form__element form__element--error">
+        {errors.email && (
+          <span className = "form__error"> {messages.email_inccorect} </span>
+        )}
+      </div>
+      
+      <div className="form__element">
+        <label htmlFor = "password" className = "form__label">
+          Hasło:
+        </label>
         <input
-          classsName = "form__input"
+          className = "form__input"
           type = "password"
           id = "password"
           name = "password"
           value = {formValues.password}
         />
+      </div>
+      
+      <div className="form__element form__element--error">
         {errors.password && (
-          <span> {messages.password_inccorect} </span>
+          <span className = "form__error"> {messages.password_inccorect} </span>
         )}
-      </label>
+      </div>
 
-      <label htmlFor = "accept" classsName = "form__label">
-        Wyrażam zgodę:
+      <div className="form__element">
+        <label htmlFor = "accept" className = "form__label">
+          Wyrażam zgodę:
+        </label>
+
         <input 
-          classsName = "form__input"
+          className = "form__input form__input--checkbox"
           type = "checkbox"
           id = "accept"
           name = "accept"
           checked = {formValues.accept}
         />
+      </div>
+
+      <div className="form__element form__element--error">
         {errors.accept && (
-          <span> {messages.accept_inccorect} </span>
+          <span className = "form__error"> {messages.accept_inccorect} </span>
         )}
-      </label>
-      <button type="submit" classsName = "form__submit">
-          Zapisz się
-      </button>
-      {formMessage && <h3> { formMessage } </h3>}
+      </div>
+
+      <div className="form__element">
+        <button type="submit" className = "form__submit">
+            Zapisz się
+        </button>
+      </div>
+
+      <div className="form__element form__element--error">
+        {formMessage && <span className = "form__error"> { formMessage } </span> }
+      </div>
     </form>
   )
 }
