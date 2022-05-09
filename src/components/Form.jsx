@@ -3,11 +3,6 @@ import React, { useState } from 'react';
 import './Form.scss'
 
 const Form = () => {
-  // const [ userName, setUserName ] = useState('');
-  // const [ email, setEmail] = useState('');
-  // const [ password, setPassword] = useState('');
-  // const [ accept, setAccept] = useState(false);
-  // const [ message, setmessage] = useState('');
   const [ formValues, setFormValues ] = useState({
     userName: '',
     email: '',
@@ -79,11 +74,29 @@ const Form = () => {
   }
 
   const formValidation = () => {
-    let userName = true;
-    let email = true;
-    let password = true;
-    let accept = true;
-    let correct = true;
+    let userName = false;
+    let email = false;
+    let password = false;
+    let accept = false;
+    let correct = false;
+    console.log( formValues)
+    if (formValues.userName.length > 2 && formValues.userName.indexOf(' ') === -1) {
+      userName = true;
+    }
+    if (formValues.email.indexOf('@') !== -1 && formValues.email.indexOf('.' !== -1)) {
+      email = true;
+    }
+    if (formValues.password.length >= 8 && formValues.password.match(/[0-9]/)) {
+      password = true;
+    }
+    if ( formValues.accept === true ) {
+      accept = true;
+    }
+
+    if ( userName && email && password && accept ) {
+      correct = true
+    }
+
     return {
     userName,
     email,
@@ -177,7 +190,7 @@ const Form = () => {
 
       <div className="form__element form__element--error">
         {errors.accept && (
-          <span className = "form__error"> {messages.accept_inccorect} </span>
+          <span className = "form__error"> {messages.accept_incorrect} </span>
         )}
       </div>
 
