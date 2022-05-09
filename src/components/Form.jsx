@@ -29,18 +29,33 @@ const Form = () => {
     accept_incorrect: 'Zgoda wymagana'
   }
 
-  const handleChange = () => {
+  const handleChange = (event) => {
+    const {name} = event.target;
+    const {type} = event.target;
 
+    if(type === 'text' ||type==='password' || type === 'email') {
+      const {value} = event.target;
+      setFormValues(prevState => ({
+        ...prevState,
+        [name]: value
+      }))
+    } else if (type === 'checkbox') {
+      const {checked} = event.target
+      setFormValues(prevState => ({
+        ...prevState,
+        [name]: checked
+      }))
+    } 
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formValues);
   }
 
   return(
     <form 
       onSubmit = {handleSubmit}
-      onChange = {handleChange}
       noValidate
       className = "form"
     > 
@@ -54,6 +69,7 @@ const Form = () => {
             id = "user"
             name = "userName"
             value = {formValues.userName}
+            onChange = {handleChange}
         /> 
       </div>
 
@@ -73,6 +89,7 @@ const Form = () => {
             id = "email"
             name = "email"
             value = {formValues.email}
+            onChange = {handleChange}
           />
           
       </div>
@@ -93,6 +110,7 @@ const Form = () => {
           id = "password"
           name = "password"
           value = {formValues.password}
+          onChange = {handleChange}
         />
       </div>
       
@@ -113,6 +131,7 @@ const Form = () => {
           id = "accept"
           name = "accept"
           checked = {formValues.accept}
+          onChange = {handleChange}
         />
       </div>
 
