@@ -1,3 +1,7 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 80vw;
+  min-height: 100vh;
+  background-color: #bbb;
 }
